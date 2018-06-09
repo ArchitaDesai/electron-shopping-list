@@ -1,0 +1,14 @@
+{
+  "name": "electron-shopping-list",
+  "version": "1.0.0",
+  "description": "A shopping list desktop application using ElectronJS",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Archita Desai",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^2.0.2"
+  }
+}
