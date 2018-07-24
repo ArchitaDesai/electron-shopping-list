@@ -5,5 +5,21 @@
 </head>
 <body>
     <h1>Shopping List</h1>
+    <ul></ul>
+    
+    <script>
+        const electron = require("electron");
+        const {ipcRenderer} = electron;
+        const ul = document.querySelector("ul");
+
+        // Catch 'item:add' value from main.js's ipcMain
+        ipcRenderer.on('item:add', function(event, item){
+            const li = document.createElement('li'); // Create li
+            const itemText = document.createTextNode(item); // creat TextNode
+            li.appendChild(itemText); // Add TextNode to li
+            ul.appendChild(li); // Add li to the ul
+        });
+    </script>        
+
 </body>
 </html>

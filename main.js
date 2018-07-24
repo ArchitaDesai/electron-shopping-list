@@ -2,7 +2,8 @@ const electron = require('electron');
 const url = require('url');
 const path = require('path');
 
-const {app, BrowserWindow, Menu} = electron;
+// ipcMain => to catch the ipcRenderer's sent value
+const {app, BrowserWindow, Menu, ipcMain} = electron;
 
 // Will list all the items
 let mainWindow;
@@ -58,6 +59,15 @@ function createAddWindow(){
         addWindow = null;
     });
 }
+
+// Catch item:add (Catch ipcRenderer's sent value from addWindow.html)
+ipcMain.on('item:add', function(event, item){
+    // Send item value to mainWindow, to display it in the shopping list
+    mainWindow.webContents.send('item:add', item);
+    // Close the "New Item" window once this new item has been added to the list
+    addWindow.close();
+});
+
 
 /* Create menu template
  * Menu in electron is just an array of objects
@@ -117,6 +127,7 @@ if(process.env.NODE_ENV !== 'production'){
                 }
             },
             {
+                // Adds Reload option in the submenu
                 // To reload the app
                 role: 'reload'
             }

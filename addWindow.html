@@ -12,5 +12,25 @@
         </div>
         <button type="submit">Add Item</button>
     </form>
+    
+    <script>
+        // ipcRenderer => will pass item's value to MainWindow through main.js
+        const electron = require("electron");
+        const {ipcRenderer} = electron;
+
+        const form = document.querySelector("form");
+        // When form is submitted
+        form.addEventListener('submit', submitForm);
+
+        function submitForm(event){
+            // Whenever we submit a form, it's automatically gonna be submitted to a file
+            // To prevent this default behavior from happening
+            event.preventDefault();
+            
+            const item = document.querySelector("#item").value;
+            ipcRenderer.send('item:add', item);
+        }
+    </script>
+
 </body>
 </html>
