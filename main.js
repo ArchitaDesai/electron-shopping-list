@@ -2,7 +2,7 @@ const electron = require('electron');
 const url = require('url');
 const path = require('path');
 
-// ipcMain => to catch the ipcRenderer's sent value
+// ipcMain => to catch the ipcRenderer's sent value in main.js
 const {app, BrowserWindow, Menu, ipcMain} = electron;
 
 // Will list all the items

@@ -21,10 +21,18 @@
             ul.appendChild(li); // Add li to the ul
         });
 
-        // Catch 'item:clear' => Clear items
+        // Clear items => Catch 'item:clear'
         ipcRenderer.on('item:clear', function(){
             ul.innerHTML = '';
         });
+
+        // Remove the double clicked item
+        ul.addEventListener('dblclick', removeItem);
+
+        function removeItem(event){
+            // Remove the double clicked item from DOM
+            event.target.remove();
+        }
     </script>        
 
 </body>
