@@ -12,6 +12,7 @@
         const {ipcRenderer} = electron;
         const ul = document.querySelector("ul");
 
+        // Add new item
         // Catch 'item:add' value from main.js's ipcMain
         ipcRenderer.on('item:add', function(event, item){
             const li = document.createElement('li'); // Create li
@@ -19,7 +20,13 @@
             li.appendChild(itemText); // Add TextNode to li
             ul.appendChild(li); // Add li to the ul
         });
+
+        // Catch 'item:clear' => Clear items
+        ipcRenderer.on('item:clear', function(){
+            ul.innerHTML = '';
+        });
     </script>        
 
 </body>
 </html>
+

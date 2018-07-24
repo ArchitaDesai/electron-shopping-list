@@ -86,7 +86,11 @@ const mainMenuTemplate = [
                 }
             },
             {
-                label: 'Clear Items'
+                label: 'Clear Items',
+                accelerator: process.platform == 'darwin' ? 'Command+Shift+Delete' : 'Ctrl+Shift+Delete',
+                click(){
+                    mainWindow.webContents.send('item:clear');
+                }  
             },
             {
                 label: 'Quit',
@@ -134,3 +138,4 @@ if(process.env.NODE_ENV !== 'production'){
         ]
     })
 }
+
