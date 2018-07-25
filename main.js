@@ -62,6 +62,7 @@ function createAddWindow(){
 
 // Catch item:add (Catch ipcRenderer's sent value from addWindow.html)
 ipcMain.on('item:add', function(event, item){
+    // console.log("Item is : ", item);
     // Send item value to mainWindow, to display it in the shopping list
     mainWindow.webContents.send('item:add', item);
     // Close the "New Item" window once this new item has been added to the list

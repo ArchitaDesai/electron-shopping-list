@@ -2,17 +2,24 @@
 <html lang="en">
 <head>
     <title>Add Shopping List Item</title>
+    <!-- MaterializeCSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
 </head>
 <body>
-    <form>
-        <div>
-            <label>Enter Item</label>
-            <!-- As soon as window loads, input will be auto focussed -->
-            <input type="text" id="item" autofocus>
-        </div>
-        <button type="submit">Add Item</button>
-    </form>
-    
+    <div class="container">
+        <form>
+            <div>
+                <label>Enter an Item</label>
+                <!-- As soon as window loads, cursor will be auto focussed on input -->
+                <input type="text" id="item" autofocus>
+            </div>
+
+            <button class="btn waves-effect waves-light" type="submit" name="action">
+                Add Item
+            </button>
+        </form>
+    </div>
+
     <script>
         // ipcRenderer => will pass item's value to MainWindow through main.js
         const electron = require("electron");
@@ -28,7 +35,9 @@
             event.preventDefault();
             
             const item = document.querySelector("#item").value;
-            ipcRenderer.send('item:add', item);
+            if(item){
+                ipcRenderer.send('item:add', item);
+            }
         }
     </script>
 
