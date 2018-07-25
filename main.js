@@ -5,6 +5,9 @@ const path = require('path');
 // ipcMain => to catch the ipcRenderer's sent value in main.js
 const {app, BrowserWindow, Menu, ipcMain} = electron;
 
+// Set ENV to production
+process.env.NODE_ENV = 'production';
+
 // Will list all the items
 let mainWindow;
 
